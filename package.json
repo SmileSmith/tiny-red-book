@@ -1,0 +1,29 @@
+{
+  "name": "tiny-red-book",
+  "version": "1.0.0",
+  "description": "小红书数据抓取",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://git.jd.com/chenlongde/tiny-red-book.git"
+  },
+  "keywords": [
+    "小红书"
+  ],
+  "author": "chenlongde",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-eslint": "^9.0.0",
+    "cheerio": "^1.0.0-rc.2",
+    "eslint": "^5.5.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "log4js": "^3.0.5",
+    "mongoose": "^5.2.14",
+    "puppeteer": "^1.8.0",
+    "superagent": "^3.8.3"
+  }
+}
