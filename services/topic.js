@@ -17,8 +17,9 @@ async function init() {
   await timeout(10000);
   // 3. 抓取feed相关联的topic数据
   // eslint-disable-next-line
-  for (const index of Array.from({ length: 300 })) {
+  for (const index of Array.from({ length: 200 })) {
     await topicService.setFeedRelatedTopicInfo();
+    await timeout(10000);
   }
   console.log('All success~');
 }

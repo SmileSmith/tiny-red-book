@@ -42,7 +42,7 @@ async function setFeedRelatedTopicInfo() {
     console.log(feed.topics);
     for (const topicId of feed.topics) {
       successList.push(await setTopicInfo(topicId));
-      await timeout(1000);
+      await timeout(2000);
     }
     await feedService.setFeedTopicCrawled(feed);
   }
