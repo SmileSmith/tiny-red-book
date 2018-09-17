@@ -8,7 +8,6 @@ module.exports = {
       doc => checkNull(doc, param),
       () => dbErr(),
     );
-    console.log(result);
     return result;
   },
   getTopicBy: async (param) => {

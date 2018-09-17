@@ -13,8 +13,7 @@ mongoose({ user, pwd, host });
 
 async function format() {
   const allTopics = await topicService.getManyTopic({});
-  console.log(allTopics.length);
-  const formatTopics = allTopics.forEach((topic) => {
+  const formatTopics = allTopics.map((topic) => {
     const page = topic.page_info;
     const relate = topic.related_topics
       .map(
