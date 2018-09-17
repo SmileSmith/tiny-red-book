@@ -18,7 +18,7 @@ async function format() {
     const relate = topic.related_topics
       .map(
         relatedTopic => `id: ${relatedTopic.page_id}, discuss_num: ${relatedTopic.page_info.discuss_num}, name: ${
-          topic.page_info.name
+          relatedTopic.page_info.name
         }`,
       )
       .join('\r\n');
