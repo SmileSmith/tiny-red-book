@@ -1,7 +1,7 @@
 const mongoose = require('../config/mongoose');
 // const Anti = require('../spiders/anti');
-const topicService = require('./topic.service');
-const { timeout } = require('./util');
+const topicService = require('../services/topic.service');
+const { timeout } = require('../services/util');
 
 // 命令行读取用户名密码
 const processArgs = process.argv.splice(2);

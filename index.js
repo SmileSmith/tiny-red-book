@@ -1,5 +1,5 @@
 const mongoose = require('./config/mongoose');
-const Anti = require('./spider/anti');
+const Anti = require('./spiders/anti');
 // 命令行读取用户名密码
 const processArgs = process.argv.splice(2);
 const user = processArgs[0];

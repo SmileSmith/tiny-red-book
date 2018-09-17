@@ -5,7 +5,19 @@ const Topic = require('../spiders/topic');
 const { nowDate, timeout } = require('./util');
 
 /**
- * 获取一个还未被使用的Topic
+ * 获取多个Topic
+ *
+ * @returns
+ */
+async function getManyTopic(param) {
+  console.log(22);
+  const feed = await topicDao.getManyTopicBy(param);
+  return feed;
+}
+
+
+/**
+ * 获取一个Topic
  *
  * @returns
  */
@@ -52,4 +64,5 @@ async function setFeedRelatedTopicInfo() {
 module.exports = {
   setFeedRelatedTopicInfo,
   getOneTopic,
+  getManyTopic,
 };

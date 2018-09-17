@@ -18,5 +18,3 @@ async function getTopicIds(itemId) {
 module.exports = {
   getTopicIds,
 };
-
-getTopicIds('5b38f71dec9d130b9480e72a');

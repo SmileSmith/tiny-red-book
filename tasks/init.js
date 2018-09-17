@@ -1,5 +1,5 @@
 const mongoose = require('../config/mongoose');
-const feedService = require('./feed.service');
+const feedService = require('../services/feed.service');
 
 // 命令行读取用户名密码
 const processArgs = process.argv.splice(2);
