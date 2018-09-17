@@ -12,6 +12,12 @@ async function getTopicIds(itemId = '5b95fae5910cf61268fdea0c') {
   const itemUrl = itemUrlPrefix + itemId;
   const result = await request
     .get(itemUrl + antiParam)
+    .set('Host', 'www.xiaohongshu.com')
+    .set(
+      'User-Agent',
+      'Mozilla/5.0 (Linux; Android 8.0; SM-N9500 Build/R16NW; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/53.0.2785.143 Crosswalk/24.53.595.0 XWEB/257 MMWEBSDK/21 Mobile Safari/537.36 MicroMessenger/6.6.7.1321(0x26060739) NetType/WIFI Language/zh_CN MicroMessenger/6.6.7.1321(0x26060739) NetType/WIFI Language/zh_CN',
+    )
+    .set('referer', 'https://www.xiaohongshu.com')
     .then((res, error) => {
       if (error) {
         // 请求出错，打印错误，返回

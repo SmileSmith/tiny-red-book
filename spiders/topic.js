@@ -8,27 +8,44 @@ const relatedUrl = 'https://www.xiaohongshu.com/web_api/sns/v1/page/$topicId/top
 const feedUrl = 'https://www.xiaohongshu.com/web_api/sns/v1/page/$topicId/notes?page=1&page_size=100';
 
 async function getTopic(topicId) {
-  const result = await request.get(topicUrl.replace('$topicId', topicId)).then((res, error) => {
-    if (error) {
-      // 请求出错，打印错误，返回
-      log.error(error);
-      return new Error(error);
-    }
-    return res.body.data;
-  });
+  const result = await request
+    .get(topicUrl.replace('$topicId', topicId))
+    .set('Host', 'www.xiaohongshu.com')
+    .set(
+      'User-Agent',
+      'Mozilla/5.0 (Linux; Android 8.0; SM-N9500 Build/R16NW; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/53.0.2785.143 Crosswalk/24.53.595.0 XWEB/257 MMWEBSDK/21 Mobile Safari/537.36 MicroMessenger/6.6.7.1321(0x26060739) NetType/WIFI Language/zh_CN MicroMessenger/6.6.7.1321(0x26060739) NetType/WIFI Language/zh_CN',
+    )
+    .set('referer', 'https://www.xiaohongshu.com')
+    .then((res, error) => {
+      if (error) {
+        // 请求出错，打印错误，返回
+        log.error(error);
+        return new Error(error);
+      }
+      return res.body.data;
+    });
 
   return result;
 }
 
 async function getRelated(topicId) {
-  const result = await request.get(relatedUrl.replace('$topicId', topicId)).then((res, error) => {
-    if (error) {
-      // 请求出错，打印错误，返回
-      log.error(error);
-      return new Error(error);
-    }
-    return res.body.data;
-  }).catch(err => console.log(err));
+  const result = await request
+    .get(relatedUrl.replace('$topicId', topicId))
+    .set('Host', 'www.xiaohongshu.com')
+    .set(
+      'User-Agent',
+      'Mozilla/5.0 (Linux; Android 8.0; SM-N9500 Build/R16NW; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/53.0.2785.143 Crosswalk/24.53.595.0 XWEB/257 MMWEBSDK/21 Mobile Safari/537.36 MicroMessenger/6.6.7.1321(0x26060739) NetType/WIFI Language/zh_CN MicroMessenger/6.6.7.1321(0x26060739) NetType/WIFI Language/zh_CN',
+    )
+    .set('referer', 'https://www.xiaohongshu.com')
+    .then((res, error) => {
+      if (error) {
+        // 请求出错，打印错误，返回
+        log.error(error);
+        return new Error(error);
+      }
+      return res.body.data;
+    })
+    .catch(err => console.log(err));
 
   return result;
 }
@@ -46,7 +63,10 @@ async function getTopicFeed(topicId) {
     )
     .set(
       'Referer',
-      'https://www.xiaohongshu.com/page/topics/$topicId?naviHidden=yes'.replace('$topicId', topicId),
+      'https://www.xiaohongshu.com/page/topics/$topicId?naviHidden=yes'.replace(
+        '$topicId',
+        topicId,
+      ),
     )
     .then((res, error) => {
       if (error) {

@@ -2,7 +2,7 @@ const feedService = require('./feed.service');
 const itemService = require('./item.service');
 const topicDao = require('../daos/topic.dao');
 const Topic = require('../spiders/topic');
-const { nowDate } = require('./util');
+const { nowDate, timeout } = require('./util');
 
 /**
  * 获取一个还未被使用的Topic
@@ -42,6 +42,7 @@ async function setFeedRelatedTopicInfo() {
     console.log(feed.topics);
     for (const topicId of feed.topics) {
       successList.push(await setTopicInfo(topicId));
+      await timeout(1000);
     }
     await feedService.setFeedTopicCrawled(feed);
   }

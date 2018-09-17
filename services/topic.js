@@ -19,7 +19,6 @@ async function init() {
   // eslint-disable-next-line
   for (const index of Array.from({ length: 300 })) {
     await topicService.setFeedRelatedTopicInfo();
-    await timeout(10000);
   }
   console.log('All success~');
 }
