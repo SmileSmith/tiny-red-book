@@ -2,9 +2,9 @@ const FeedModel = require('../models/feed.model');
 const { dbErr, checkNull } = require('./util');
 
 module.exports = {
-  getUidByOpenid: async (openid) => {
-    const result = await FeedModel.findOne({ openid }).then(
-      doc => checkNull(doc, openid),
+  getFeedBy: async (param) => {
+    const result = await FeedModel.findOne(param).then(
+      doc => checkNull(doc, param),
       () => dbErr(),
     );
     return result;
@@ -17,5 +17,15 @@ module.exports = {
         console.info(`save feedList ${feedInfoList.length}: success`);
       }
     });
+  },
+  setFeedTopicCrawled: async (feed) => {
+    FeedModel.collection.updateMany(
+      { id: feed.id },
+      { $set: { ss_crawled: true, topics: feed.topics } },
+      {},
+      (err) => {
+        console.log(`update feed  ss_crawled ${feed.id}: ${err || 'success'}`);
+      },
+    );
   },
 };

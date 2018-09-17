@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const debug = require('debug')('foo:server');
-const db = require('./db');
+const dbConfig = require('./db');
 
 // 数据库地址： 'mongodb://用户名:密码@ip地址:端口号/数据库';
 
@@ -10,9 +10,9 @@ const defaultConfig = {
 };
 
 module.exports = (config) => {
-  const user = config.user || db.user;
-  const pwd = config.pwd || db.pwd;
-  const host = config.host || db.host;
+  const user = config.user || dbConfig.user;
+  const pwd = config.pwd || dbConfig.pwd;
+  const host = config.host || dbConfig.host;
   const mongodb = `mongodb://${user}:${pwd}@${host}:${defaultConfig.port}/${defaultConfig.db}`;
   console.log(mongodb);
   mongoose.connect(mongodb); // 连接mongodb数据库

@@ -24,7 +24,9 @@ const feedSchema = new Schema({
   video_id: String,
   // 内部model
   model_type: String,
-  // 是否已爬取
+  // 关联话题
+  topics: Array,
+  // 是否已使用
   ss_crawled: Boolean,
   // 抓取日期
   ss_date: String,

@@ -6,7 +6,7 @@ const log = log4js.getLogger('item');
 
 // 目标链接
 const itemUrlPrefix = 'https://www.xiaohongshu.com/discovery/item/';
-let antiParam = '';
+let antiParam = '?_at=21980ef56cd4d31ccae60da140f82f55dd7a0';
 
 async function getTopicIds(itemId = '5b95fae5910cf61268fdea0c') {
   const itemUrl = itemUrlPrefix + itemId;
@@ -35,7 +35,7 @@ async function getTopicIds(itemId = '5b95fae5910cf61268fdea0c') {
       });
       return topicIdArr;
     })
-    .catch(() => {});
+    .catch(err => new Error(err));
   return result;
 }
 

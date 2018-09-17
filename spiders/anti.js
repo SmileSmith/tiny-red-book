@@ -1,6 +1,7 @@
 const puppeteer = require('puppeteer');
 
 let page;
+let inited = false;
 
 async function init() {
   const launchOption = { args: ['--no-sandbox'] };
@@ -8,6 +9,7 @@ async function init() {
   console.log('[Puppteer] Launch Browser');
   page = await browser.newPage();
   console.log('[Puppteer] Open Tab');
+  inited = true;
 }
 
 
@@ -29,5 +31,6 @@ async function getAntiId() {
 
 module.exports = {
   init,
+  inited,
   getAntiId,
 };

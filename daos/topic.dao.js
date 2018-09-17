@@ -3,21 +3,17 @@ const Topic = require('../models/topic.model');
 const { dbErr, checkNull } = require('./util');
 
 module.exports = {
-  getUidByOpenid: async (openid) => {
-    const result = await Topic.findOne({ openid }).then(
-      doc => checkNull(doc, openid),
+  getTopicBy: async (param) => {
+    const result = await Topic.findOne(param).then(
+      doc => checkNull(doc, param),
       () => dbErr(),
     );
     return result;
   },
-  setWeiboInfo: async (openid, weiboInfo) => {
-    const topic = new Topic({
-      openid,
-      uid: weiboInfo.uid,
-    });
-
+  setTopicInfo: async (topicInfo) => {
+    const topic = new Topic(topicInfo);
     topic.save((err) => {
-      console.log(`save topic ${openid}:`, err ? 'failed' : 'success');
+      console.log(`save topic ${topicInfo.id}:`, err ? 'failed' : 'success');
     });
   },
 };

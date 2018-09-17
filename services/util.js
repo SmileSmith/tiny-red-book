@@ -1,7 +1,13 @@
 const now = new Date();
 
 
-function getDateStr() {
+function timeout(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
+
+function getNewDate() {
   const y = now.getFullYear();
   let m = now.getMonth() + 1;
   let d = now.getDate();
@@ -15,5 +21,7 @@ function getDateStr() {
 }
 
 module.exports = {
-  getDateStr,
+  timeout,
+  getNewDate,
+  nowDate: getNewDate(),
 };

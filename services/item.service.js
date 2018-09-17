@@ -1,7 +1,8 @@
 const Anti = require('../spiders/anti');
 const Item = require('../spiders/item');
 
-export default async function getItem(itemId) {
+async function getTopicIds(itemId) {
+  await Anti.init();
   let topicIds = await Item.getTopicIds(itemId);
   if (topicIds instanceof Array) {
     return topicIds;
@@ -14,3 +15,9 @@ export default async function getItem(itemId) {
   topicIds = await Item.getTopicIds(itemId);
   return topicIds;
 }
+
+module.exports = {
+  getTopicIds,
+};
+
+getTopicIds('5b38f71dec9d130b9480e72a');
