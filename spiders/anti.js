@@ -14,6 +14,7 @@ async function init() {
 
 
 async function getAntiId() {
+  await init();
   await page.goto('https://www.xiaohongshu.com/discovery/item/5b95fae5910cf61268fdea0c', {
     waitUntil: 'networkidle2',
   });

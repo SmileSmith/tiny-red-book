@@ -1,5 +1,5 @@
 const mongoose = require('../config/mongoose');
-const Anti = require('../spiders/anti');
+// const Anti = require('../spiders/anti');
 const topicService = require('./topic.service');
 const { timeout } = require('./util');
 
@@ -13,10 +13,11 @@ async function init() {
   // 1. 初始化数据库链接
   mongoose({ user, pwd, host });
   // 2. 初始化Puppeteer，用户获取antiId
-  await Anti.init();
+  // await Anti.init();
+  await timeout(10000);
   // 3. 抓取feed相关联的topic数据
-  for (const index of Array.from({ length: 500 })) {
-    console.log(`[Topic] ${index} start`);
+  // eslint-disable-next-line
+  for (const index of Array.from({ length: 300 })) {
     await topicService.setFeedRelatedTopicInfo();
     await timeout(10000);
   }

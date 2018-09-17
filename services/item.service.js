@@ -2,7 +2,6 @@ const Anti = require('../spiders/anti');
 const Item = require('../spiders/item');
 
 async function getTopicIds(itemId) {
-  await Anti.init();
   let topicIds = await Item.getTopicIds(itemId);
   if (topicIds instanceof Array) {
     return topicIds;
