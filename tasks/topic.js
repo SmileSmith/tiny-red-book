@@ -1,7 +1,10 @@
 const mongoose = require('../config/mongoose');
+const log4js = require('../config/log4js');
 // const Anti = require('../spiders/anti');
 const topicService = require('../services/topic.service');
 const { timeout } = require('../services/util');
+
+const log = log4js.getLogger('app');
 
 // 命令行读取用户名密码
 const processArgs = process.argv.splice(2);
@@ -9,11 +12,10 @@ const user = processArgs[0];
 const pwd = processArgs[1];
 const host = processArgs[2];
 
-async function init() {
+async function start() {
   // 1. 初始化数据库链接
   mongoose({ user, pwd, host });
   // 2. 初始化Puppeteer，用户获取antiId
-  // await Anti.init();
   await timeout(10000);
   // 3. 抓取feed相关联的topic数据
   // eslint-disable-next-line
@@ -21,7 +23,7 @@ async function init() {
     await topicService.setFeedRelatedTopicInfo();
     await timeout(10000);
   }
-  console.log('All success~');
+  log.info('All success~');
 }
 
-init();
+start();

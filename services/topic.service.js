@@ -1,8 +1,11 @@
+const log4js = require('../config/log4js');
 const feedService = require('./feed.service');
 const itemService = require('./item.service');
 const topicDao = require('../daos/topic.dao');
 const Topic = require('../spiders/topic');
 const { nowDate, timeout } = require('./util');
+
+const log = log4js.getLogger('topicService');
 
 /**
  * 获取多个Topic
@@ -10,7 +13,6 @@ const { nowDate, timeout } = require('./util');
  * @returns
  */
 async function getManyTopic(param) {
-  console.log(22);
   const feed = await topicDao.getManyTopicBy(param);
   return feed;
 }
@@ -51,7 +53,7 @@ async function setFeedRelatedTopicInfo() {
   feed.topics = await itemService.getTopicIds(feed.id);
   const successList = [];
   if (feed.topics instanceof Array) {
-    console.log(feed.topics);
+    log.info(feed.topics);
     for (const topicId of feed.topics) {
       successList.push(await setTopicInfo(topicId));
       await timeout(2000);

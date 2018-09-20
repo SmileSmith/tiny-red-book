@@ -4,25 +4,21 @@ log4js.configure({
   appenders: {
     console: {
       type: 'console',
-      category: 'console',
     },
-    item: {
+    spider: {
       type: 'dateFile',
-      filename: 'log/item.log',
+      filename: 'log/spider.log',
       pattern: '-yyyy-MM-dd',
-      category: 'spider',
     },
-    feed: {
+    service: {
       type: 'dateFile',
-      filename: 'log/feed.log',
+      filename: 'log/service.log',
       pattern: '-yyyy-MM-dd',
-      category: 'spider',
     },
-    topic: {
+    dao: {
       type: 'dateFile',
-      filename: 'log/topic.log',
+      filename: 'log/dao.log',
       pattern: '-yyyy-MM-dd',
-      category: 'spider',
     },
     app: {
       type: 'file',
@@ -42,7 +38,15 @@ log4js.configure({
   },
   categories: {
     default: { appenders: ['app', 'errors'], level: 'DEBUG' },
-    spider: { appenders: ['item', 'feed', 'topic'], level: 'DEBUG' },
+    item: { appenders: ['spider', 'console', 'errors'], level: 'DEBUG' },
+    feed: { appenders: ['spider', 'console', 'errors'], level: 'DEBUG' },
+    topic: { appenders: ['spider', 'console', 'errors'], level: 'DEBUG' },
+    itemService: { appenders: ['service', 'console', 'errors'], level: 'DEBUG' },
+    feedService: { appenders: ['service', 'console', 'errors'], level: 'DEBUG' },
+    topicService: { appenders: ['service', 'console', 'errors'], level: 'DEBUG' },
+    formatDao: { appenders: ['dao', 'console', 'errors'], level: 'DEBUG' },
+    feedDao: { appenders: ['dao', 'console', 'errors'], level: 'DEBUG' },
+    topicDao: { appenders: ['dao', 'console', 'errors'], level: 'DEBUG' },
   },
   replaceConsole: true,
 });

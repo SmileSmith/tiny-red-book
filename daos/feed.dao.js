@@ -1,5 +1,8 @@
 const FeedModel = require('../models/feed.model');
+const log4js = require('../config/log4js');
 const { dbErr, checkNull } = require('./util');
+
+const log = log4js.getLogger('feedDao');
 
 module.exports = {
   getFeedBy: async (param) => {
@@ -12,9 +15,9 @@ module.exports = {
   setFeedInfoList: async (feedInfoList) => {
     FeedModel.collection.insert(feedInfoList, (err) => {
       if (err) {
-        console.log(`save feedList ${err}: failed`);
+        log.error(`save feedList ${err}: failed`);
       } else {
-        console.info(`save feedList ${feedInfoList.length}: success`);
+        log.info(`save feedList ${feedInfoList.length}: success`);
       }
     });
   },
@@ -24,7 +27,11 @@ module.exports = {
       { $set: { ss_crawled: true, topics: feed.topics } },
       {},
       (err) => {
-        console.log(`update feed  ss_crawled ${feed.id}: ${err || 'success'}`);
+        if (err) {
+          log.error(`update feed ss_crawled ${feed.id}: failed: ${err}`);
+        } else {
+          log.info(`update feed ss_crawled ${feed.id}: success`);
+        }
       },
     );
   },

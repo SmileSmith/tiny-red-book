@@ -1,5 +1,8 @@
 const mongoose = require('../config/mongoose');
+const log4js = require('../config/log4js');
 const feedService = require('../services/feed.service');
+
+const log = log4js.getLogger('app');
 
 // 命令行读取用户名密码
 const processArgs = process.argv.splice(2);
@@ -29,6 +32,7 @@ async function start() {
   oids.forEach((oid) => {
     feedService.initFeedInfo(oid);
   });
+  log.info('All success~');
 }
 
 start();

@@ -1,6 +1,9 @@
 const mongoose = require('../../config/mongoose');
+const log4js = require('../../config/log4js');
 const topicService = require('../../services/topic.service');
 const topicFormatDao = require('./topic.format.dao');
+
+const log = log4js.getLogger('app');
 
 // 命令行读取用户名密码
 const processArgs = process.argv.splice(2);
@@ -32,7 +35,7 @@ async function format() {
       related_topics: relate,
     };
   });
-  console.log(formatTopics);
+  log.info(`formatTopics success: ${formatTopics.length}`);
   topicFormatDao.setTopicResult(formatTopics);
 }
 
