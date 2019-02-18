@@ -14,6 +14,31 @@
 
 因为小红书详情页面的数据存在多重防爬机制，因此先简单用 puppeteer 模拟页面请求抓取，获取_at参数
 
+## 快速开始
+
+1.根目录执行
+
+```javascript
+npm install
+```
+
+2.打开mogodb服务，并新建./config/db.js，参考如下：
+
+```javascript
+module.exports = {
+  user: 'tinyredbook', // mogodb用户名
+  pwd: 'xxxxxx', // mogodb密码
+  host: '127.0.0.1', // mogodb host地址，端口默认27017
+};
+```
+
+3.根目录执行
+
+```javascript
+node index.js
+```
+
+
 ## 小红书App SIGN 算法 Python 版本（备份，或许会用到）
 
 ```python
